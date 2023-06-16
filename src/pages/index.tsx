@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import styles from '../style/styles.module.css';
-import bgImage from '../../public/v546batch3-mynt-34-badgewatercolor_1.jpg'
+
 import Link from 'next/link';
 export default function Home() {
  
@@ -12,7 +12,7 @@ export default function Home() {
             <div className="col-span-4 sm:col-span-3">
                 <div className="bg-white shadow rounded-lg p-6">
                     <div className="flex flex-col items-center">
-                        <img src="http://creativemongolia.com/media/yaruusetgegch/content/profile/maira_bugat.jpg" className="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0">
+                        <img src="images/maira.jpg" alt="maira" className="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0">
 
                         </img>
                         <p className="text-gray-600 text-xl font-bold">Maira Dayei</p>
