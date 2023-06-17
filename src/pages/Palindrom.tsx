@@ -49,9 +49,9 @@ const Palindrom = () => {
     setPalindrom(hasPalindrome)
 
   if(palindrom.length === 1){
-    setResult("this part is palindrom  ")
-  }else{
     setResult("this word does not contain a palindrome")
+  }else{
+    setResult("this part is palindrom ")
   }
     setwords(inputWord)
     setInputWord('')
