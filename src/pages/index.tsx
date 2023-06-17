@@ -32,6 +32,7 @@ export default function Home() {
                             <p className=" text-black">Typescript</p>
                             <p className=" text-black">Tailwind Css</p>
                             <p className=" text-black">Blender</p>
+                            <p className=" text-black"> React native</p>
                             <p className=" text-black">AWS</p>
                             <p className=" text-black">Firebase</p>
                             <p className=" text-black">Github</p>
@@ -67,16 +68,16 @@ export default function Home() {
                 <div  > 
                 <h2 className="text-xl font-bold text-black p-6 mb-4 ">Tasks</h2>
                  <h1 className="title text-black ml-6">
-                    <Link href="/Palindrom">find palindrom piece</Link>
+                    <Link href="/Palindrom">- to find palindrome part</Link>
                  </h1>
                  <h1 className="title text-black ml-6">
-                    <Link href="/Bill">bill-how much amount of money to spend on lunch per week</Link>
+                    <Link href="/Bill">- bill-how much amount of money to spend on lunch per week</Link>
                  </h1>
                  <h1 className="title text-black ml-6">
-                    <Link href="/Database">working database</Link>
+                    <Link href="/Database">- working database</Link>
                  </h1>
                  <h1 className="title text-black ml-6">
-                    <Link href="/Photo">edit photo</Link>
+                    <Link href="/Photo">- edit photo</Link>
                  </h1>
                 </div>
             </div>

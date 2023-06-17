@@ -36,7 +36,7 @@ const Palindrom = () => {
    
   const handleInputChange = (event: any) => {
     setInputWord(event.target.value)
-   
+    setResult('')
   
   }
   const handleCheckClick = () =>{
@@ -49,9 +49,9 @@ const Palindrom = () => {
     setPalindrom(hasPalindrome)
 
   if(palindrom.length === 1){
-    setResult("this word does not acontain a part palindrome ")
+    setResult("this part is palindrom  ")
   }else{
-    setResult("this part is palindrom")
+    setResult("this word does not contain a palindrome")
   }
     setwords(inputWord)
     setInputWord('')
@@ -60,7 +60,7 @@ const Palindrom = () => {
     <div className={`bg-image ${styles.bgImage} h-screen flex justify-center items-center`}>
       <div>
      
-      
+      <p className='text-black p-6'>- to find palindrome part</p>
       <input type="text" value={inputWord} onChange={handleInputChange} placeholder="Enter a word" className="block w-full p-4 text-black border border-gray-300 rounded-lg bg-white-50 sm:text-md focus:ring-orange-500 focus:border-orange-500 dark:bg-white-700 dark:border-orange-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-orange-500 dark:focus:border-orange-500"/>
       <button onClick={handleCheckClick} className='py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-black   rounded-lg border    dark:hover:text-black dark:hover:bg-white'>Check</button>
       <p className='text-black'>input words - {words}</p>

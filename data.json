@@ -1,0 +1,40 @@
+[
+    {
+      "id": 1,
+      "name": "Saraa",
+      "professional": "Engineer",
+      "image":"/images/avatarProfile.jpg",
+      "expenses": 5000,
+      "debt": 3000,
+      "receivable":1000
+    },
+    {
+        "id": 2,
+        "name": "Naraa",
+        "professional": "Engineer",
+        "image":"/images/avatarProfile.jpg",
+        "expenses": 5000,
+        "debt": 3000,
+        "receivable":1000
+      },
+      {
+        "id": 3,
+        "name": "Navchaa",
+        "professional": "Engineer",
+        "image":"/images/avatarProfile.jpg",
+        "expenses": 5000,
+        "debt": 3000,
+        "receivable":1000
+      },
+      {
+        "id": 4,
+        "name": "Tsetsegee",
+        "professional": "Engineer",
+        "image":"/images/avatarProfile.jpg",
+        "expenses": 5000,
+        "debt": 3000,
+        "receivable":1000
+      }
+   
+  ]
+  
