@@ -36,8 +36,9 @@ const Palindrom = () => {
    
   const handleInputChange = (event: any) => {
     setInputWord(event.target.value)
-    setResult('')
   
+   
+    setwords('')
   }
   const handleCheckClick = () =>{
    
@@ -47,17 +48,23 @@ const Palindrom = () => {
 
 
     setPalindrom(hasPalindrome)
-
-  if(palindrom.length === 1){
+    console.log(palindrom,"ss")
+ 
+  if (palindrom.length === 0) {
+   
     setResult("this word does not contain a palindrome")
-  }else{
+  } else {
+ 
     setResult("this part is palindrom ")
   }
+
+
     setwords(inputWord)
     setInputWord('')
   }
+ 
   return (
-    <div className={`bg-image ${styles.bgImage} h-screen flex justify-center items-center`}>
+    <div className={`${styles.bgImage} h-screen flex justify-center items-center`}>
       <div>
      
       <p className='text-black p-6'>- to find palindrome part</p>
