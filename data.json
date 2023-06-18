@@ -5,6 +5,7 @@
       "professional": "Engineer",
       "image":"/images/avatarProfile.jpg",
       "expenses": 5000,
+      "spendYourself": 2000,
       "debt": 3000,
       "receivable":1000
     },
@@ -14,6 +15,7 @@
         "professional": "Engineer",
         "image":"/images/avatarProfile.jpg",
         "expenses": 5000,
+        "spendYourself": 2000,
         "debt": 3000,
         "receivable":1000
       },
@@ -23,6 +25,7 @@
         "professional": "Engineer",
         "image":"/images/avatarProfile.jpg",
         "expenses": 5000,
+        "spendYourself": 2000,
         "debt": 3000,
         "receivable":1000
       },
@@ -32,6 +35,7 @@
         "professional": "Engineer",
         "image":"/images/avatarProfile.jpg",
         "expenses": 5000,
+        "spendYourself": 2000,
         "debt": 3000,
         "receivable":1000
       }

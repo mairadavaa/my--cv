@@ -6,7 +6,7 @@ export default function Home() {
  
   return (
     <>
-      <div className={`bg-image ${styles.bgImage} h-screen`}>
+      <div className={`${styles.bgImage} h-screen`}>
       <div className="container mx-auto py-8">
         <div className="grid grid-cols-4 sm:grid-cols-12 gap-6 px-4">
             <div className="col-span-4 sm:col-span-3">
@@ -15,12 +15,12 @@ export default function Home() {
                         <img src="images/maira.jpg" alt="maira" className="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0">
 
                         </img>
-                        <p className="text-gray-600 text-xl font-bold">Maira Dayei</p>
+                        <p className="text-gray-600 text-xl font-bold">Maira Danyei</p>
                         <p className="text-gray-600">Software </p>
                         <p className="text-gray-600"> Developer</p>
                         <div className="mt-6 flex flex-wrap gap-4 justify-center">
-                            <a href="#" className="bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded">Contact</a>
-                            <a href="#" className="bg-yellow-600 hover:bg-yellow-400 text-white-800 py-2 px-4 rounded">Resume</a>
+                            <a href="https://www.facebook.com/maira.danyei" className="bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded">Contact me</a>
+                            <a href="http://creativemongolia.com/maira/" className="bg-yellow-600 hover:bg-yellow-400 text-white-800 py-2 px-4 rounded">About me</a>
                         </div>
                     </div>
                     <hr className="my-6 border-t border-gray-300"/>
