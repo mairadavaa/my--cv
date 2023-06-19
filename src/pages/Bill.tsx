@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import styles from '../style/styles.module.css';
 import Data from '../../data.json'
+interface HTMLInputElement extends EventTarget {
+  value: number;
+  name: string;
+}
 const Bill = () => {
   const [nara, setNara]= useState({
     name: "Naraa",
@@ -42,7 +46,7 @@ const Bill = () => {
     count:0
   }
   )
-  const handleInputNara = (e) => {
+  const handleInputNara = (e: React.ChangeEvent<HTMLInputElement>): void => {
   
     const { name, value } = e.target;
     setNara((prevState) => ({
@@ -51,7 +55,7 @@ const Bill = () => {
     }));
     
   };
-  const handleInputSara = (e) => {
+  const handleInputSara = (e:React.ChangeEvent<HTMLInputElement>): void => {
   
     const { name, value } = e.target;
     setSara((prevState) => ({
@@ -60,7 +64,7 @@ const Bill = () => {
     }));
     
   };
-  const handleInputBata = (e) => {
+  const handleInputBata = (e: React.ChangeEvent<HTMLInputElement>): void => {
   
     const { name, value } = e.target;
     setBata((prevState) => ({
@@ -69,7 +73,7 @@ const Bill = () => {
     }));
     
   };
-  const handleInputBoldoo = (e) => {
+  const handleInputBoldoo = (e:React.ChangeEvent<HTMLInputElement>): void => {
   
     const { name, value } = e.target;
     setBoldoo((prevState) => ({
@@ -78,7 +82,7 @@ const Bill = () => {
     }));
     
   };
-  const toCaculateNara = (e) => {
+  const toCaculateNara = (e: number) => {
     setSara((prevState) => ({
       ...prevState,
       lunch: Number(e) / 4,
@@ -189,11 +193,11 @@ const Bill = () => {
   return (
     <div className={`${styles.bgImage} h-screen flex justify-center flex-col`}>
         <p className='text-black p-6'>- bill-how much amount of money to spend on lunch per week</p>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className='rounded overflow-hidden shadow-lg'>
             <div className="px-6 py-4 flex flex-col ">
                 <div className="font-bold text-xl mb-2 text-black">{nara.name}</div>
-                <input type="number" name="paid" placeholder="tug"   onChange={handleInputNara} className='text-black px-4 py-3'/>
+                <input type="number" name="paid" placeholder="tug"  onChange={ handleInputNara} className='text-black px-4 py-3' />
                 <button className="bg-orange-300 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-3" onClick={() => toCaculateNara(nara.paid)}>Paid {nara.count}</button>
 
             </div>
