@@ -1,54 +1,341 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../style/styles.module.css';
-import data from '../../data.json'
+import Data from '../../data.json'
 const Bill = () => {
+  const [nara, setNara]= useState({
+    name: "Naraa",
+    paid: 0,
+    total: 0,
+    lunch: 0,
+    debt: 0,
+    receivable:0,
+    count: 0
+  }
+  )
+  const [sara, setSara]= useState({
+    name: "Saraa",
+    paid: 0,
+    total: 0,
+    lunch: 0,
+    debt: 0,
+    receivable:0,
+    count:0
+  }
+  )
+  const [bata, setBata]= useState({
+    name: "Bataa",
+    paid: 0,
+    total: 0,
+    lunch: 0,
+    debt: 0,
+    receivable:0,
+    count:0
+  }
+  )
+  const [boldoo, setBoldoo]= useState({
+    name: "Boldoo",
+    paid: 0,
+    total: 0,
+    lunch: 0,
+    debt: 0,
+    receivable:0,
+    count:0
+  }
+  )
+  const handleInputNara = (e) => {
+  
+    const { name, value } = e.target;
+    setNara((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
+    
+  };
+  const handleInputSara = (e) => {
+  
+    const { name, value } = e.target;
+    setSara((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
+    
+  };
+  const handleInputBata = (e) => {
+  
+    const { name, value } = e.target;
+    setBata((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
+    
+  };
+  const handleInputBoldoo = (e) => {
+  
+    const { name, value } = e.target;
+    setBoldoo((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
+    
+  };
+  const toCaculateNara = (e) => {
+    setSara((prevState) => ({
+      ...prevState,
+      lunch: Number(e) / 4,
+      debt:prevState.debt + Number(e)/4
+    }));
+  
+    setBata((prevState) => ({
+      ...prevState,
+      lunch: Number(e) / 4,
+      debt: prevState.debt + Number(e)/4
+    }));
+  
+    setBoldoo((prevState) => ({
+      ...prevState,
+      lunch: Number(e) / 4,
+      debt: prevState.debt + Number(e)/4
+    }));
+  
+    setNara((prevState) => ({
+      ...prevState,
+      total: Number(prevState.total) + Number(e),
+      count:prevState.count + 1,
+      lunch: e / 4,
+      receivable: sara.debt + bata.debt + boldoo.debt
+    }));
+  };
+  
+  const toCaculateSara = (e: number) =>{
+
+    setNara ((prevState) => ({
+        ... prevState,
+        lunch: Number(e) / 4,
+        debt: prevState.debt + Number(e)/4
+    }))
+    setBata ((prevState) => ({
+        ... prevState,
+        lunch: Number(e) / 4,
+        debt: prevState.debt + Number(e)/4
+    }))
+    setBoldoo ((prevState) => ({
+        ... prevState,
+        lunch: Number(e) / 4,
+        debt: prevState.debt + Number(e)/4
+    }))
+    setSara ((prevState) => ({
+        ... prevState,
+        total: Number(prevState.total) + Number(e),
+        count:prevState.count + 1,
+        lunch: e/4,
+        receivable: nara.debt+bata.debt+boldoo.debt
+    }))
+  }
+  const toCaculateBata = (e: number) =>{
+
+    setSara ((prevState) => ({
+        ... prevState,
+        lunch: Number(e) / 4,
+        debt: prevState.debt + prevState.lunch
+    }))
+    setNara ((prevState) => ({
+        ... prevState,
+        lunch: Number(e) / 4,
+        debt: prevState.debt + prevState.lunch
+    }))
+    setBoldoo ((prevState) => ({
+        ... prevState,
+        lunch: Number(e) / 4,
+        debt: prevState.debt + prevState.lunch
+    }))
+    setBata ((prevState) => ({
+        ... prevState,
+        total: Number(prevState.total) + Number(e),
+        count:prevState.count + 1,
+        lunch: e/4,
+        receivable: sara.debt + nara.debt + boldoo.debt
+    }))
+  }
+  const toCaculateBoldoo = (e: number) =>{
+
+    setSara ((prevState) => ({
+        ... prevState,
+        lunch: Number(e) / 4,
+        debt: prevState.debt + Number(e)/4
+    }))
+    setBata ((prevState) => ({
+        ... prevState,
+        lunch: Number(e) / 4,
+        debt: prevState.debt + Number(e)/4
+    }))
+    setNara ((prevState) => ({
+        ... prevState,
+        lunch: Number(e) / 4,
+        debt: prevState.debt + Number(e)/4,
+        receivable: prevState.receivable - Number(e)/4
+    }))
+    setBoldoo ((prevState) => ({
+        ... prevState,
+        total: Number(prevState.total) + Number(e),
+        count:prevState.count + 1,
+        lunch: Number(e)/4,
+        receivable: sara.debt+bata.debt+nara.debt
+    }))
+    console.log(boldoo,"boldoo")
+  }
+ 
+
+  
   return (
     <div className={`${styles.bgImage} h-screen flex justify-center flex-col`}>
         <p className='text-black p-6'>- bill-how much amount of money to spend on lunch per week</p>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 ">
-          {data.map((item) =>(
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className='rounded overflow-hidden shadow-lg'>
+            <div className="px-6 py-4 flex flex-col ">
+                <div className="font-bold text-xl mb-2 text-black">{nara.name}</div>
+                <input type="number" name="paid" placeholder="tug"   onChange={handleInputNara} className='text-black px-4 py-3'/>
+                <button className="bg-orange-300 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-3" onClick={() => toCaculateNara(nara.paid)}>Paid {nara.count}</button>
 
+            </div>
+            <div className="px-6 py-2">
+                <ul>
+                <li className="flex items-center py-1">
+                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
+                    </svg>
+                    <span className="text-gray-700">paid {nara.total} tug</span>
+                </li>
+                <li className="flex items-center py-1">
+                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
+                    </svg>
+                    <span className="text-gray-700">lunch {nara.lunch} tug</span>
+                </li>
+                <li className="flex items-center py-1">
+                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
+                    </svg>
+                    <span className="text-gray-700">debt {nara.debt} tug</span>
+                </li>
+                <li className="flex items-center py-1">
+                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
+                    </svg>
+                    <span className="text-gray-700">receivable {nara.receivable} tug</span>
+                </li>
+                </ul>
+             </div>
+        </div>
+        <div className='rounded overflow-hidden shadow-lg'>
+            <div className="px-6 py-4 flex flex-col ">
+                <div className="font-bold text-xl mb-2 text-black">{sara.name}</div>
+                <input type="number" name="total" placeholder="tug"   onChange={handleInputSara} className='text-black px-4 py-3'/>
+                <button className="bg-orange-300 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-3" onClick={() => toCaculateSara(sara.paid)}>Paid  {sara.count}</button>
 
+            </div>
+            <div className="px-6 py-2">
+                <ul>
+                <li className="flex items-center py-1">
+                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
+                    </svg>
+                    <span className="text-gray-700">paid {sara.total} tug</span>
+                </li>
+                <li className="flex items-center py-1">
+                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
+                    </svg>
+                    <span className="text-gray-700">lunch {sara.lunch} tug</span>
+                </li>
+                <li className="flex items-center py-1">
+                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
+                    </svg>
+                    <span className="text-gray-700">debt {sara.debt} tug</span>
+                </li>
+                <li className="flex items-center py-1">
+                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
+                    </svg>
+                    <span className="text-gray-700">receivable {sara.receivable} tug</span>
+                </li>
+                </ul>
+             </div>
+        </div>
+        <div className='rounded overflow-hidden shadow-lg'>
+            <div className="px-6 py-4 flex flex-col ">
+                <div className="font-bold text-xl mb-2 text-black">{bata.name}</div>
+                <input type="number" name="total" placeholder="tug"   onChange={handleInputBata} className='text-black px-4 py-3'/>
+                <button className="bg-orange-300 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-3" onClick={() => toCaculateBata(bata.paid)}>Paid  {bata.count} </button>
 
-          <figure key={item.id} className="flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 rounded-t-lg md:rounded-t-none md:rounded-tl-lg md:border-r dark:bg-orange-50 dark:border-orange-700">
-            item.balance = item.expenses - item.debt - item.receivable;
-              <figcaption className="flex items-center justify-center space-x-3">
-                  <img className="rounded-full w-9 h-9" src={item.image} alt={item.name}/>
-                  <div className="space-y-0.5 font-medium dark:text-black text-left">
-                      <div>{item.name}</div>
-                      <div className="text-sm text-gray-500 dark:text-black">{item.professional}</div>
-                      <div>{item.id}</div>
-                  </div>
-              </figcaption>    
-              <ul role="list" className="space-y-5 my-7">
-                  <li className="flex space-x-3">
-                      <svg aria-hidden="true" className="flex-shrink-0 w-5 h-5 text-blue-600 dark:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Check icon</title><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                      <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400"> expenses-{item.expenses}tug</span>
-                  </li>
-                  <li className="flex space-x-3">
-                      <svg aria-hidden="true" className="flex-shrink-0 w-5 h-5 text-blue-600 dark:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Check icon</title><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                      <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">for lunch- {item.spendYourself} tug </span>
-                  </li>
-                  <li className="flex space-x-3">
-                      <svg aria-hidden="true" className="flex-shrink-0 w-5 h-5 text-blue-600 dark:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Check icon</title><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                      <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">debt-{item.debt} tug</span>
-                  </li>
-                  <li className="flex space-x-3">
-                      <svg aria-hidden="true" className="flex-shrink-0 w-5 h-5 text-blue-600 dark:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Check icon</title><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                      <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">receible-{item.receivable} tug</span>
-                  </li>
-                  <li className="flex space-x-3">
-                      <svg aria-hidden="true" className="flex-shrink-0 w-5 h-5 text-blue-600 dark:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Check icon</title><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                      <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">balance </span>
-                  </li>
-              </ul>
-          </figure>
-           ))}
-      </div>
+            </div>
+            <div className="px-6 py-2">
+                <ul>
+                <li className="flex items-center py-1">
+                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
+                    </svg>
+                    <span className="text-gray-700">paid {bata.total} tug</span>
+                </li>
+                <li className="flex items-center py-1">
+                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
+                    </svg>
+                    <span className="text-gray-700">lunch {bata.lunch} tug</span>
+                </li>
+                <li className="flex items-center py-1">
+                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
+                    </svg>
+                    <span className="text-gray-700">debt {bata.debt} tug</span>
+                </li>
+                <li className="flex items-center py-1">
+                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
+                    </svg>
+                    <span className="text-gray-700">receivable {bata.receivable} tug</span>
+                </li>
+                </ul>
+             </div>
+        </div>
+        <div className='rounded overflow-hidden shadow-lg'>
+            <div className="px-6 py-4 flex flex-col ">
+                <div className="font-bold text-xl mb-2 text-black">{boldoo.name}</div>
+                <input type="number" name="total" placeholder="tug"   onChange={handleInputBoldoo} className='text-black px-4 py-3'/>
+                <button className="bg-orange-300 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-3" onClick={() => toCaculateBoldoo(boldoo.paid)}>Paid {boldoo.count}</button>
 
-    
-       
-       
+            </div>
+            <div className="px-6 py-2">
+                <ul>
+                <li className="flex items-center py-1">
+                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
+                    </svg>
+                    <span className="text-gray-700">paid {boldoo.total} tug</span>
+                </li>
+                <li className="flex items-center py-1">
+                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
+                    </svg>
+                    <span className="text-gray-700">lunch {boldoo.lunch} tug</span>
+                </li>
+                <li className="flex items-center py-1">
+                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
+                    </svg>
+                    <span className="text-gray-700">debt {boldoo.debt} tug</span>
+                </li>
+                <li className="flex items-center py-1">
+                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
+                    </svg>
+                    <span className="text-gray-700">receivable {boldoo.receivable} tug</span>
+                </li>
+                </ul>
+             </div>
+        </div>
+        </div>
+             
     </div>
   )
 }

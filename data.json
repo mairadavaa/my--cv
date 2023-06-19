@@ -4,7 +4,7 @@
       "name": "Saraa",
       "professional": "Engineer",
       "image":"/images/avatarProfile.jpg",
-      "expenses": 5000,
+      "total": 0,
       "spendYourself": 2000,
       "debt": 3000,
       "receivable":1000
@@ -14,7 +14,7 @@
         "name": "Naraa",
         "professional": "Engineer",
         "image":"/images/avatarProfile.jpg",
-        "expenses": 5000,
+        "total": 5000,
         "spendYourself": 2000,
         "debt": 3000,
         "receivable":1000
@@ -24,7 +24,7 @@
         "name": "Navchaa",
         "professional": "Engineer",
         "image":"/images/avatarProfile.jpg",
-        "expenses": 5000,
+        "total": 5000,
         "spendYourself": 2000,
         "debt": 3000,
         "receivable":1000
@@ -34,11 +34,11 @@
         "name": "Tsetsegee",
         "professional": "Engineer",
         "image":"/images/avatarProfile.jpg",
-        "expenses": 5000,
+        "total": 5000,
         "spendYourself": 2000,
         "debt": 3000,
         "receivable":1000
       }
    
-  ]
+    ]
   
