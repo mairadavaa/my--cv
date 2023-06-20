@@ -63,7 +63,7 @@ interface PersonState {
     count:0
   }
   )
-  const handleInputNara = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleInputNara = (e: React.ChangeEvent<HTMLInputElement>) => {
   
     const { name, value } = e.target;
     setNara((prevState) => ({
@@ -71,7 +71,7 @@ interface PersonState {
       [name]: value
     }));
     
-  };
+  }
   const handleInputSara = (e:React.ChangeEvent<HTMLInputElement>): void => {
   
     const { name, value } = e.target;
