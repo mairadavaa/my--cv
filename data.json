@@ -2,43 +2,40 @@
     {
       "id": 1,
       "name": "Saraa",
-      "professional": "Engineer",
-      "image":"/images/avatarProfile.jpg",
+      "paid": 0,
       "total": 0,
-      "spendYourself": 2000,
-      "debt": 3000,
-      "receivable":1000
+      "spendYourself": 0,
+      "debt": 0,
+      "receivable":0
     },
     {
-        "id": 2,
-        "name": "Naraa",
-        "professional": "Engineer",
-        "image":"/images/avatarProfile.jpg",
-        "total": 5000,
-        "spendYourself": 2000,
-        "debt": 3000,
-        "receivable":1000
-      },
-      {
-        "id": 3,
-        "name": "Navchaa",
-        "professional": "Engineer",
-        "image":"/images/avatarProfile.jpg",
-        "total": 5000,
-        "spendYourself": 2000,
-        "debt": 3000,
-        "receivable":1000
-      },
-      {
-        "id": 4,
-        "name": "Tsetsegee",
-        "professional": "Engineer",
-        "image":"/images/avatarProfile.jpg",
-        "total": 5000,
-        "spendYourself": 2000,
-        "debt": 3000,
-        "receivable":1000
-      }
+      "id": 2,
+      "name": "Naraa",
+      "paid": 0,
+      "total": 0,
+      "spendYourself": 0,
+      "debt": 0,
+      "receivable":0
+    },
+    {
+      "id": 1,
+      "name": "Baraa",
+      "paid": 0,
+      "total": 0,
+      "spendYourself": 0,
+      "debt": 0,
+      "receivable":0
+    },
+    {
+      "id": 1,
+      "name": "Paraa",
+      "paid": 0,
+      "total": 0,
+      "spendYourself": 0,
+      "debt": 0,
+      "receivable":0
+    }
+
    
     ]
   

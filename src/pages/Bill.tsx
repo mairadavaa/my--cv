@@ -1,22 +1,37 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import styles from '../style/styles.module.css';
 import Data from '../../data.json'
+import { Person } from '@/component/person';
 interface HTMLInputElement extends EventTarget {
   value: number;
   name: string;
 }
-const Bill = () => {
-  const [nara, setNara]= useState({
+interface PersonState {
+  id: number;
+  name: string;
+  paid: number;
+  total: number;
+  lunch: number;
+  debt: number;
+  receivable: number;
+  count: number;
+}
+ export interface PersonProps {
+  state: PersonState;
+}
+ const Bill: React.FC = () => {
+  const [nara, setNara] = useState<PersonState>({
+    id: 1,
     name: "Naraa",
     paid: 0,
     total: 0,
     lunch: 0,
     debt: 0,
-    receivable:0,
+    receivable: 0,
     count: 0
-  }
-  )
-  const [sara, setSara]= useState({
+  });
+  const [sara, setSara]= useState<PersonState>({
+    id: 2,
     name: "Saraa",
     paid: 0,
     total: 0,
@@ -26,7 +41,8 @@ const Bill = () => {
     count:0
   }
   )
-  const [bata, setBata]= useState({
+  const [bata, setBata]= useState<PersonState>({
+    id: 3,
     name: "Bataa",
     paid: 0,
     total: 0,
@@ -36,7 +52,8 @@ const Bill = () => {
     count:0
   }
   )
-  const [boldoo, setBoldoo]= useState({
+  const [boldoo, setBoldoo]=useState<PersonState>({
+    id: 4,
     name: "Boldoo",
     paid: 0,
     total: 0,
@@ -194,150 +211,16 @@ const Bill = () => {
     <div className={`${styles.bgImage} h-screen flex justify-center flex-col`}>
         <p className='text-black p-6'>- bill-how much amount of money to spend on lunch per week</p>
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className='rounded overflow-hidden shadow-lg'>
-            <div className="px-6 py-4 flex flex-col ">
-                <div className="font-bold text-xl mb-2 text-black">{nara.name}</div>
-                <input type="number" name="paid" placeholder="tug"  onChange={ handleInputNara} className='text-black px-4 py-3' />
-                <button className="bg-orange-300 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-3" onClick={() => toCaculateNara(nara.paid)}>Paid {nara.count}</button>
+        <Person state={nara}/>
+        <Person state={sara}/>
+        <Person state={bata}/>
+        <Person state={boldoo}/>
+       
+                {/* <input type="number" name="paid" placeholder="tug"   onChange={handleInputSara} className='text-black px-4 py-3'/>
+                <button className="bg-orange-300 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-3" onClick={() => toCaculateSara(sara.paid)}>Paid  {sara.count}</button> */}
 
-            </div>
-            <div className="px-6 py-2">
-                <ul>
-                <li className="flex items-center py-1">
-                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
-                    </svg>
-                    <span className="text-gray-700">paid {nara.total} tug</span>
-                </li>
-                <li className="flex items-center py-1">
-                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
-                    </svg>
-                    <span className="text-gray-700">lunch {nara.lunch} tug</span>
-                </li>
-                <li className="flex items-center py-1">
-                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
-                    </svg>
-                    <span className="text-gray-700">debt {nara.debt} tug</span>
-                </li>
-                <li className="flex items-center py-1">
-                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
-                    </svg>
-                    <span className="text-gray-700">receivable {nara.receivable} tug</span>
-                </li>
-                </ul>
-             </div>
-        </div>
-        <div className='rounded overflow-hidden shadow-lg'>
-            <div className="px-6 py-4 flex flex-col ">
-                <div className="font-bold text-xl mb-2 text-black">{sara.name}</div>
-                <input type="number" name="paid" placeholder="tug"   onChange={handleInputSara} className='text-black px-4 py-3'/>
-                <button className="bg-orange-300 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-3" onClick={() => toCaculateSara(sara.paid)}>Paid  {sara.count}</button>
-
-            </div>
-            <div className="px-6 py-2">
-                <ul>
-                <li className="flex items-center py-1">
-                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
-                    </svg>
-                    <span className="text-gray-700">paid {sara.total} tug</span>
-                </li>
-                <li className="flex items-center py-1">
-                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
-                    </svg>
-                    <span className="text-gray-700">lunch {sara.lunch} tug</span>
-                </li>
-                <li className="flex items-center py-1">
-                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
-                    </svg>
-                    <span className="text-gray-700">debt {sara.debt} tug</span>
-                </li>
-                <li className="flex items-center py-1">
-                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
-                    </svg>
-                    <span className="text-gray-700">receivable {sara.receivable} tug</span>
-                </li>
-                </ul>
-             </div>
-        </div>
-        <div className='rounded overflow-hidden shadow-lg'>
-            <div className="px-6 py-4 flex flex-col ">
-                <div className="font-bold text-xl mb-2 text-black">{bata.name}</div>
-                <input type="number" name="paid" placeholder="tug"   onChange={handleInputBata} className='text-black px-4 py-3'/>
-                <button className="bg-orange-300 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-3" onClick={() => toCaculateBata(bata.paid)}>Paid  {bata.count} </button>
-
-            </div>
-            <div className="px-6 py-2">
-                <ul>
-                <li className="flex items-center py-1">
-                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
-                    </svg>
-                    <span className="text-gray-700">paid {bata.total} tug</span>
-                </li>
-                <li className="flex items-center py-1">
-                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
-                    </svg>
-                    <span className="text-gray-700">lunch {bata.lunch} tug</span>
-                </li>
-                <li className="flex items-center py-1">
-                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
-                    </svg>
-                    <span className="text-gray-700">debt {bata.debt} tug</span>
-                </li>
-                <li className="flex items-center py-1">
-                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
-                    </svg>
-                    <span className="text-gray-700">receivable {bata.receivable} tug</span>
-                </li>
-                </ul>
-             </div>
-        </div>
-        <div className='rounded overflow-hidden shadow-lg'>
-            <div className="px-6 py-4 flex flex-col ">
-                <div className="font-bold text-xl mb-2 text-black">{boldoo.name}</div>
-                <input type="number" name="paid" placeholder="tug"   onChange={handleInputBoldoo} className='text-black px-4 py-3'/>
-                <button className="bg-orange-300 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-3" onClick={() => toCaculateBoldoo(boldoo.paid)}>Paid {boldoo.count}</button>
-
-            </div>
-            <div className="px-6 py-2">
-                <ul>
-                <li className="flex items-center py-1">
-                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
-                    </svg>
-                    <span className="text-gray-700">paid {boldoo.total} tug</span>
-                </li>
-                <li className="flex items-center py-1">
-                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
-                    </svg>
-                    <span className="text-gray-700">lunch {boldoo.lunch} tug</span>
-                </li>
-                <li className="flex items-center py-1">
-                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
-                    </svg>
-                    <span className="text-gray-700">debt {boldoo.debt} tug</span>
-                </li>
-                <li className="flex items-center py-1">
-                    <svg className=" h-4 fill-current text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M5 8h10a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 4h6a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2zm0 4h8a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2z" />
-                    </svg>
-                    <span className="text-gray-700">receivable {boldoo.receivable} tug</span>
-                </li>
-                </ul>
-             </div>
-        </div>
+           
+       
         </div>
              
     </div>
