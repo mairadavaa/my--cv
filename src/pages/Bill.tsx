@@ -85,19 +85,19 @@ const Bill = () => {
   const toCaculateNara = (e: number) => {
     setSara((prevState) => ({
       ...prevState,
-      lunch: Number(e) / 4,
+      lunch: prevState.lunch + Number(e) / 4,
       debt:prevState.debt + Number(e)/4
     }));
   
     setBata((prevState) => ({
       ...prevState,
-      lunch: Number(e) / 4,
+      lunch: prevState.lunch + Number(e) / 4,
       debt: prevState.debt + Number(e)/4
     }));
   
     setBoldoo((prevState) => ({
       ...prevState,
-      lunch: Number(e) / 4,
+      lunch: prevState.lunch + Number(e) / 4,
       debt: prevState.debt + Number(e)/4
     }));
   
@@ -105,8 +105,8 @@ const Bill = () => {
       ...prevState,
       total: Number(prevState.total) + Number(e),
       count:prevState.count + 1,
-      lunch: e / 4,
-      receivable: sara.debt + bata.debt + boldoo.debt
+      lunch: prevState.lunch + e / 4,
+      receivable: prevState.receivable + Number(e)/4*3
     }));
   };
   
@@ -114,67 +114,67 @@ const Bill = () => {
 
     setNara ((prevState) => ({
         ... prevState,
-        lunch: Number(e) / 4,
+        lunch: prevState.lunch + Number(e) / 4,
         debt: prevState.debt + Number(e)/4
     }))
     setBata ((prevState) => ({
         ... prevState,
-        lunch: Number(e) / 4,
+        lunch: prevState.lunch + Number(e) / 4,
         debt: prevState.debt + Number(e)/4
     }))
     setBoldoo ((prevState) => ({
         ... prevState,
-        lunch: Number(e) / 4,
+        lunch: prevState.lunch + Number(e) / 4,
         debt: prevState.debt + Number(e)/4
     }))
     setSara ((prevState) => ({
         ... prevState,
         total: Number(prevState.total) + Number(e),
         count:prevState.count + 1,
-        lunch: e/4,
-        receivable: nara.debt+bata.debt+boldoo.debt
+        lunch: prevState.lunch + e/4,
+        receivable: prevState.receivable + Number(e)/4*3
     }))
   }
   const toCaculateBata = (e: number) =>{
 
     setSara ((prevState) => ({
         ... prevState,
-        lunch: Number(e) / 4,
+        lunch: prevState.lunch + Number(e) / 4,
         debt: prevState.debt + prevState.lunch
     }))
     setNara ((prevState) => ({
         ... prevState,
-        lunch: Number(e) / 4,
+        lunch: prevState.lunch + Number(e) / 4,
         debt: prevState.debt + prevState.lunch
     }))
     setBoldoo ((prevState) => ({
         ... prevState,
-        lunch: Number(e) / 4,
+        lunch: prevState.lunch + Number(e) / 4,
         debt: prevState.debt + prevState.lunch
     }))
     setBata ((prevState) => ({
         ... prevState,
         total: Number(prevState.total) + Number(e),
         count:prevState.count + 1,
-        lunch: e/4,
-        receivable: sara.debt + nara.debt + boldoo.debt
+        lunch: prevState.lunch + e/4,
+        receivable: prevState.receivable + Number(e)/4*3
     }))
   }
   const toCaculateBoldoo = (e: number) =>{
 
     setSara ((prevState) => ({
         ... prevState,
-        lunch: Number(e) / 4,
+        lunch:prevState.lunch + Number(e) / 4,
         debt: prevState.debt + Number(e)/4
     }))
     setBata ((prevState) => ({
         ... prevState,
-        lunch: Number(e) / 4,
+        lunch:prevState.lunch + Number(e) / 4,
         debt: prevState.debt + Number(e)/4
     }))
     setNara ((prevState) => ({
         ... prevState,
-        lunch: Number(e) / 4,
+        lunch: prevState.lunch + Number(e) / 4,
         debt: prevState.debt + Number(e)/4,
         receivable: prevState.receivable - Number(e)/4
     }))
@@ -182,8 +182,8 @@ const Bill = () => {
         ... prevState,
         total: Number(prevState.total) + Number(e),
         count:prevState.count + 1,
-        lunch: Number(e)/4,
-        receivable: sara.debt+bata.debt+nara.debt
+        lunch: prevState.lunch + Number(e)/4,
+        receivable: prevState.receivable + Number(e)/4*3
     }))
     console.log(boldoo,"boldoo")
   }
@@ -233,7 +233,7 @@ const Bill = () => {
         <div className='rounded overflow-hidden shadow-lg'>
             <div className="px-6 py-4 flex flex-col ">
                 <div className="font-bold text-xl mb-2 text-black">{sara.name}</div>
-                <input type="number" name="total" placeholder="tug"   onChange={handleInputSara} className='text-black px-4 py-3'/>
+                <input type="number" name="paid" placeholder="tug"   onChange={handleInputSara} className='text-black px-4 py-3'/>
                 <button className="bg-orange-300 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-3" onClick={() => toCaculateSara(sara.paid)}>Paid  {sara.count}</button>
 
             </div>
@@ -269,7 +269,7 @@ const Bill = () => {
         <div className='rounded overflow-hidden shadow-lg'>
             <div className="px-6 py-4 flex flex-col ">
                 <div className="font-bold text-xl mb-2 text-black">{bata.name}</div>
-                <input type="number" name="total" placeholder="tug"   onChange={handleInputBata} className='text-black px-4 py-3'/>
+                <input type="number" name="paid" placeholder="tug"   onChange={handleInputBata} className='text-black px-4 py-3'/>
                 <button className="bg-orange-300 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-3" onClick={() => toCaculateBata(bata.paid)}>Paid  {bata.count} </button>
 
             </div>
@@ -305,7 +305,7 @@ const Bill = () => {
         <div className='rounded overflow-hidden shadow-lg'>
             <div className="px-6 py-4 flex flex-col ">
                 <div className="font-bold text-xl mb-2 text-black">{boldoo.name}</div>
-                <input type="number" name="total" placeholder="tug"   onChange={handleInputBoldoo} className='text-black px-4 py-3'/>
+                <input type="number" name="paid" placeholder="tug"   onChange={handleInputBoldoo} className='text-black px-4 py-3'/>
                 <button className="bg-orange-300 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-3" onClick={() => toCaculateBoldoo(boldoo.paid)}>Paid {boldoo.count}</button>
 
             </div>
