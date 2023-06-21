@@ -6,7 +6,7 @@ interface HTMLInputElement extends EventTarget {
   value: number;
   name: string;
 }
-interface PersonState {
+export interface PersonState {
   id: number;
   name: string;
   paid: number;
@@ -18,6 +18,8 @@ interface PersonState {
 }
  export interface PersonProps {
   state: PersonState;
+  setState: React.Dispatch<React.SetStateAction<PersonState>>
+  onClick: (e: number) => void
 }
  const Bill: React.FC = () => {
   const [nara, setNara] = useState<PersonState>({
@@ -63,43 +65,8 @@ interface PersonState {
     count:0
   }
   )
-  const handleInputNara = (e: React.ChangeEvent<HTMLInputElement>) => {
-  
-    const { name, value } = e.target;
-    setNara((prevState) => ({
-      ...prevState,
-      [name]: value
-    }));
-    
-  }
-  const handleInputSara = (e:React.ChangeEvent<HTMLInputElement>): void => {
-  
-    const { name, value } = e.target;
-    setSara((prevState) => ({
-      ...prevState,
-      [name]: value
-    }));
-    
-  };
-  const handleInputBata = (e: React.ChangeEvent<HTMLInputElement>): void => {
-  
-    const { name, value } = e.target;
-    setBata((prevState) => ({
-      ...prevState,
-      [name]: value
-    }));
-    
-  };
-  const handleInputBoldoo = (e:React.ChangeEvent<HTMLInputElement>): void => {
-  
-    const { name, value } = e.target;
-    setBoldoo((prevState) => ({
-      ...prevState,
-      [name]: value
-    }));
-    
-  };
-  const toCaculateNara = (e: number) => {
+
+  const toCalculateNara = (e: number) => {
     setSara((prevState) => ({
       ...prevState,
       lunch: prevState.lunch + Number(e) / 4,
@@ -127,7 +94,7 @@ interface PersonState {
     }));
   };
   
-  const toCaculateSara = (e: number) =>{
+  const toCalculateSara = (e: number) =>{
 
     setNara ((prevState) => ({
         ... prevState,
@@ -152,7 +119,7 @@ interface PersonState {
         receivable: prevState.receivable + Number(e)/4*3
     }))
   }
-  const toCaculateBata = (e: number) =>{
+  const toCalculateBata = (e: number) =>{
 
     setSara ((prevState) => ({
         ... prevState,
@@ -177,7 +144,7 @@ interface PersonState {
         receivable: prevState.receivable + Number(e)/4*3
     }))
   }
-  const toCaculateBoldoo = (e: number) =>{
+  const toCalculateBoldoo = (e: number) =>{
 
     setSara ((prevState) => ({
         ... prevState,
@@ -208,16 +175,16 @@ interface PersonState {
 
   
   return (
-    <div className={`${styles.bgImage} h-screen flex justify-center flex-col`}>
-        <p className='text-black p-6'>- bill-how much amount of money to spend on lunch per week</p>
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Person state={nara}/>
-        <Person state={sara}/>
-        <Person state={bata}/>
-        <Person state={boldoo}/>
+    <div className={`${styles.bgImage} h-screen flex  flex-col `}>
+        <p className='text-black p-6 mt-10'>- bill-how much amount of money to spend on lunch per week</p>
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ">
+        <Person state={nara} setState={setNara} onClick={toCalculateNara}/>
+        <Person state={sara} setState={setSara} onClick={toCalculateSara}/>
+        <Person state={bata} setState={setBata} onClick={toCalculateBata}/>
+        <Person state={boldoo} setState={setBoldoo} onClick={toCalculateBoldoo}/>
        
-                {/* <input type="number" name="paid" placeholder="tug"   onChange={handleInputSara} className='text-black px-4 py-3'/>
-                <button className="bg-orange-300 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-3" onClick={() => toCaculateSara(sara.paid)}>Paid  {sara.count}</button> */}
+               
+               
 
            
        

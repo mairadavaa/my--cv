@@ -1,16 +1,26 @@
-import { PersonProps } from '@/pages/Bill';
+import { PersonProps, PersonState } from '@/pages/Bill';
 import * as React from 'react';
 
 
 
- export const Person: React.FC<PersonProps> = ({ state }) => {
+ export const Person: React.FC<PersonProps> = ({ state, setState, onClick }) => {
     const { name, paid, total, lunch, debt, receivable, count } = state;
+    const handleInputChange = (
+        e: React.ChangeEvent<HTMLInputElement>,
+        setState: React.Dispatch<React.SetStateAction<PersonState>>
+      ) => {
+        const { name, value } = e.target;
+        setState((prevState) => ({
+          ...prevState,
+          [name]: value
+        }));
+      }
   return (
-    <div className='rounded overflow-hidden shadow-lg'>
+    <div className='rounded overflow-hidden shadow-lg  bg-orange-100'>
             <div className="px-6 py-4 flex flex-col ">
                 <div className="font-bold text-xl mb-2 text-black">{name}</div>
-                <input type="number" name="paid" placeholder="tug"   className='text-black px-4 py-3' />
-                <button className="bg-orange-300 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-3" >Paid {count}</button>
+                <input type="number" name="paid" placeholder="tug" onChange={(e) => handleInputChange(e, setState)}  className='text-black  px-4 py-3' />
+                <button className="bg-orange-300 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-3" onClick={() => onClick(paid)}>Paid {count}</button>
 
             </div>
             <div className="px-6 py-2">
